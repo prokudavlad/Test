@@ -1,0 +1,27 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.4.1
+    steps:
+      - checkout
+  build2:        ### This Job is described in another branch and it should not be here
+    docker:
+      - image: circleci/ruby:2.4.1
+    steps:
+      - checkout
+
+workflows:
+  version: 2
+  first-job:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: test-first
+  second-job:
+    jobs:
+      - build2:
+          filters:
+            branches:
+              only: test-second    ## If branch is "test-first" - this work like parallel workflows, but I need to use the second branch
