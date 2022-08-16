@@ -1,4 +1,4 @@
-FROM ruby:2.2.10
+FROM ruby:2.2.1
 RUN mkdir /app
 WORKDIR /app
 ADD . /home/k8svp/lesson3/app
